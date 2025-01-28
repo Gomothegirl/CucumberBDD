@@ -1,3 +1,4 @@
+@regression
 @ContactForm
 
 Feature: Contact Form

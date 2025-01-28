@@ -1,3 +1,4 @@
+@regression
 @DropdownCheckboxRadio
 
 Feature: Dropdown Checkbox Radio

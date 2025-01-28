@@ -1,3 +1,4 @@
+@regression
 @AlertsPopups
 
   Feature: Alerts Popups

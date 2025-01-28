@@ -8,7 +8,7 @@ import org.testng.annotations.DataProvider;
         features = "src/test/resources/features",
         glue = "stepdefinitions",
         plugin = {"pretty", "html:target/cucumber-reports.html"},
-        tags = "@AlertsPopups",
+        tags = "@regression",
         monochrome = true
 )
 public class Runner extends AbstractTestNGCucumberTests {

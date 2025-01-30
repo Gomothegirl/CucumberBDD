@@ -1,37 +1,32 @@
 package stepdefinitions;
 
+import driver.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.Iterator;
 import java.util.Set;
 
 public class AlertsPopups {
     WebDriver driver;
-    @Before
-    public void setup(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-    }
-    @After
-    public void Teardown(){
-        driver.quit();
 
+    @Before
+    public void setup() {
+        driver = WebDriverManager.getDriver();
     }
+
+    @After
+    public void Teardown() {
+        WebDriverManager.quitDriver();
+    }
+
     @Given("user is on the popups page")
     public void userIsOnThePopupsPage() {
         driver.get("https://automationtesting.co.uk/popups.html");
@@ -54,15 +49,14 @@ public class AlertsPopups {
     }
 
     @And("user can close popup window")
-    public void userCanClosePopupWindow() throws InterruptedException {
-String Mainwindow = driver.getWindowHandle();;
+    public void userCanClosePopupWindow() {
+String Mainwindow = driver.getWindowHandle();
         Set<String> handles = driver.getWindowHandles();
-        Iterator<String> iterate = handles.iterator();
+        Iterator <String> iterate = handles.iterator();
         while(iterate.hasNext()){
             String child = iterate.next();
             if(!Mainwindow.equalsIgnoreCase(child)){
                 driver.switchTo().window(child);
-                Thread.sleep(3000);
                 driver.close();
             }
         }

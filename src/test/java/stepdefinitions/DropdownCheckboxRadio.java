@@ -1,45 +1,27 @@
 package stepdefinitions;
 
+import driver.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class DropdownCheckboxRadio {
     WebDriver driver;
-    WebDriverWait wait;
 
     @Before
     public void setup() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver = WebDriverManager.getDriver();
     }
 
     @After
     public void Teardown() {
-        try {
-            if (driver != null) {
-                driver.quit();
-            }
-        } catch (Exception e) {
-            System.out.println("Error during teardown: " + e.getMessage());
-        }
+        WebDriverManager.quitDriver();
     }
 
     @Given("user is on the home page")

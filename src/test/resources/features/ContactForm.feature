@@ -1,11 +1,10 @@
 @regression
-@ContactForm
+@contactForm
 
 Feature: Contact Form
 
   Scenario Outline: User is can submit contact form
-    Given User is on the home page
-    When User clicks on Contact Form from the menu
+    Given User is on the contactform page
     And User enters name "<name>"
     And User enters lastname "<lastname>"
     And User enters email "<email>"
